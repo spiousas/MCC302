@@ -126,39 +126,46 @@ print(a)
 
 *Aclaración*: El código presentado después de **#** se llama **comentario**, no se ejecuta y no es necesario escribirlo. Simplemente son notas que a veces dejamos para entender o aclarar algo del código. Tambien podemos usar **#** para inahbilitar temporalmente algunas lìneas del código (es muy útil cuando buscamos errores)
 
-Habrán notado que para crear un objeto basta con ponerle un nombre (alfanumerico sin espacios) y asignarle un contenido. Para asignarle un contenido usamos el operador **asiganción** o sea `<-`. Este símbolo puedecambiar de dirección: `<-` o `->`. _Siempre la flecha va de contenido al nombre del objeto_, siguiendo esta regla:
+Habrán notado que para crear un objeto basta con ponerle un nombre (alfanumerico sin espacios) y asignarle un contenido. Para asignarle un contenido usamos el operador **asiganción** o sea `<-`. Este símbolo puede cambiar de dirección: `<-` o `->`. _Siempre la flecha va de contenido al nombre del objeto_, siguiendo esta regla:
 
 `nombre_del_objeto <- valor_del_objeto`
 
-#### Ejercicios
-
-Hasta ahora hemos creado objetos de un solo contenido, vamos a crear objetos con contenidos mas diversos. Escribamos el siguiente codigo en **R**:
+Los objetos pueden contener mas de un valor (pueden incluso tener muchisimos), por ejemplo
 
 ```{r}
-#Crea un objeto con numeros del uno al 10
-numeros <- 1:10
 
-#Crea un objeto que contiene una lista de nombres
-nombres <- c("Ismael", "Claudia", "Alberto", "Juan Carlos", "Laura", "José", "Luis", "Lorena", "Charly", "Fito")
+objeto_largo<-c(1,2,3)
 
-#Creemos un objeto que contenga la lista del genero 
-#de los primeros  alumnos del curso
-
-genero <- c("varon", "mujer","varon","varon", "mujer","varon", "varon", "mujer","varon","varon")
-
-##Ahora imprimamoslo para ver su contenido
-
-print(numeros)
-print(nombres)
-print(genero)
 ```
-
-NACHO: Creo que acá estaría bueno que les dejemos reflexionar un poco antes de darles las respuesta.
 
 Vamos a aclarar algunos conceptos de la sintaxis: 
 
-1. Usamos `:` entre dos numeros para decirle a R que nos de todos los numeros en ese rango inclusive los extremos. 
-2. Cuando creamos objetos llenos de texto, como los nombres o el genero, R no entiende de palabras entonces debemos aclararlo para eso los escribimos entre `""`. Esto dice a R donde empieza y termina una palabra y que es sólo eso (porque a veces las palabras son objetos o funciones, pero entre comillas es solo una palabra). Si queremos incluir una enumeracion de palabras o de objetos de distinta clase debemos usar la sintaxis `c(contenido1, contenido2, contenido3)`
+1. En este caso usamos una funcion que se llama 'c' (por concatenacion) que le dice a R que objeto_largo se constituye por esos valores, uno tras otro (o sea concatenado)
+2. Tambien podemos usar `:` entre dos numeros para decirle a R que nos de todos los numeros en ese rango inclusive los extremos (por ejemplo 1:3 en este caso).
+3. Cuando creamos objetos llenos de texto, como nombres, R no entiende de palabras entonces debemos aclararlo para eso los escribimos entre `""`. Esto dice a R donde empieza y termina una palabra y que es sólo eso (porque a veces las palabras son objetos o funciones, pero entre comillas es solo una palabra). Si queremos incluir una enumeracion de palabras o de objetos de distinta clase debemos usar la sintaxis `c(contenido1, contenido2, contenido3)`
+
+
+#### Ejercicios
+
+Vamos a crear objetos con contenidos mas diversos. Resolvamos estos problemas en  el siguiente codigo en **R**, pueden ayudarse consultando a internet:
+
+```{r}
+#Crea un objeto llamado numeros con numeros consecutivos del 1 al 10
+
+
+#Crea un objeto (nombres) que contiene una lista de 10 nombres
+
+
+#Creemos un objeto que contenga el genero de cada uno de los nomnbres que pusimos antes (usemos, m para masculino y f para femenino)
+
+
+
+##Ahora imprimamoslo para ver su contenido usando la funcion print
+
+```
+
+
+
 
 ### Clases de objetos
 
@@ -249,7 +256,7 @@ Los objetos se pueden manipular con operaciones como hemos visto previamente, te
 ```{r}
 #Quiero dividir todos los elementos del vector numeros a la mitad
 
-numeros/2
+numeros / 2
 ```
 
 O también: 
@@ -257,7 +264,7 @@ O también:
 ```{r}
 # Si quisieramos usar esta lista que hemos obtenido ahora màs adelante la podemos asignar a otro objeto
 
-numeros_divididos<-numeros/2
+numeros_divididos <- numeros / 2
 
 #Fijense que ahora existe en el environment
 print(numeros_divididos)
@@ -268,7 +275,7 @@ O también:
 ```{r}
 #podemos hacer muchas cosas con los operadores, como operaciones complejas
 
-(numeros/2)+1
+(numeros/2) + 1
 
 #ahora a cada componente lo dividimos por la mitad y le sumamos uno
 ```
@@ -288,13 +295,13 @@ O esta:
 ```{r}
 
 #Un dato relevante es que la clase True o False puede usarse en operaciones numericas (True es igual a 1 y False es igual a 0), por eso a este vector logico podemos sumarle 1
-genero_TF<-genero == "varon"
+genero_TF <- genero == "varon"
 class(genero_TF)
 ```
 
 O esta:
 ```{r}
-genero_TF+1
+genero_TF + 1
 ```
 
 ### Funciones con objetos 
@@ -338,6 +345,7 @@ El resultado es algo así:
   
 Esto es porque **R** no puede sumar un número a una palabra, y nos da un mensaje de error.
 
+
 ¿Cómo revertirían este problema si sólo tuvieran el vector `numeros_como_palabras`?
 ```{r}
 # Completen el código que revierte a números y le suma uno. Asignenlo a un objeto y usen la función print()
@@ -348,12 +356,13 @@ Esto es porque **R** no puede sumar un número a una palabra, y nos da un mensaj
 
 ¿Podemos convertir cualquier cosa a número?
 ```{r}
-nombres_como_numeros<-as.numeric(nombres)
+nombres_como_numeros <- as.numeric(nombres)
 ```
 
 Efectivamente, no podemos convertir palabras a números, porque no hay una forma de asignar un número a cada palabra.
 
 Veamos qué pasó con el objeto `nombres_como_numeros`:
+
 ```{r}
 class(nombres_como_numeros)
 ```
@@ -366,7 +375,6 @@ print(nombres_como_numeros)
 
 Pero los objetos no pudieron convertirse, entonces se convirtieron en `NA`, que es el equivalente a un valor perdido.
 
-
 Existen también funciones más avanzadas que nos permiten hacer cálculos estadísticos con los objetos.
 
 La clase que viene vamos a ver esto más en detalle, pero por ahora tratemos de desempolvar dos cosas que vimos en el curso de nivelación: la media y la desviación estándar.
@@ -374,62 +382,112 @@ La clase que viene vamos a ver esto más en detalle, pero por ahora tratemos de 
 ```{r}
 mean(numeros)
 ```
+
+
 ```{r}
 sd(numeros)
 ```
 
-
 ¡Felicitaciones! Acaba de hacer su primer análisis estadístico con **R**.
 
-## Ejercicios integradores
+## Condiciones if y ciclos for
 
-Nacho: Acá más que un multiple choice les haría hacer un par de cosas en R.
-Continuemos con nuestro esfuerzo de abstracción y volvamos a pensar en las bases de datos como matrices.
+En esta sección vamos a ver como podemos hacer que **R** tome decisiones y repita acciones. Esto es algo para lo que **R** es muy bueno, y nos permite hacer cosas que serían muy tediosas de hacer a mano.
 
-Una columna de una variable es entonces un vector, y los valores que adopta en cada sujeto sus componentes.
+Supongamos que queremos saber si un númeor es mayor a 0.5. Para esto podemos usar la estructura de control `if` (si) que nos permite tomar decisiones en función de una condición.
 
-1. ¿Que clase de vector serían las siguientes variables:?
-
-> **Tipo de variables**_______________**Clase del vector**
->
->Variable continua
->
->Variables dicotómica
->
->Variable ordinal 
->
->Variable categorica          
-
-
-2. Ahora apliquemos lo aprendido a conceptos de "la vida real", dados estos ejemplos de variables trate de clasificarlos con la definición teórica y en la clase de vector que se transformaría
-
-> **Tipo de variables**__________**Tipo de variable**__________**Clase del vector**
->
->Edad (en años)
->
->Sexo
->
->Nota de un examen 
->
->Temperatura corporal de un castor (ºC)
->
->Coeficiente de inteligencia (IQ)
->
->Color de ojos
->
->Ocurrencia de un evento o no
->
->Medalla olimpica obtenida
->
->Estrellas en mercado libre 
-
-Recuerden un principio esencial en la operacionalización de las variables: 
-
-```{r echo=FALSE}
-knitr::include_graphics("img/chiquita.JPG")
+Por ejemplo:
+```{r}
+# Creamos un vector de ejemplo
+ejemplo_if <- runif(1,0,1)
+# Recorremos cada elemento del vector ejemplo_if
+if (ejemplo_if > 0.5) {
+  print(paste("El número es mayor a 0.5:", ejemplo_if))
+} else {
+  print(paste("El número no es mayor a 0.5:", ejemplo_if))
+}
 ```
 
-Las variables pueden cambiar de categoría si decidimos "verlas" de una forma u otra, pero esto afecta a la forma que se las "trata" (la clase que R les asigna y eso determina que operaciones podemos hacer con ellas)
+Otra tarea que podríamos querer resolver es repetir una acción varias veces. Para esto podemos usar un ciclo `for` (para) que nos permite recorrer un vector y aplicar una acción a cada uno de sus elementos. Por ejemplo, podemos querer crear un vector y mostrar en pantalla acda uno de sus elementos.
+
+```{r}
+# Creamos el vector ejemplo_for
+ejemplo_for <- c(1.2, 0.5, 0.8, 0.3, 0.9)
+# Recorremos cada elemento del vector ejemplo_for
+for (valor in ejemplo_for) {
+  print(paste("El valor es:", valor))
+}
+```
+
+Y le podríamos querer agregar el índice del vector
+
+```{r}
+# Recorremos cada elemento del vector ejemplo_for
+for (i in 1:length(ejemplo_for)) { # En este caso recorremos los índices del vector desde 1 hasta su longitud
+  print(paste("El valor en la posición", i, "es:", ejemplo_for[i]))
+}
+```
+Claramente podemos combinar ambas nociones, por ejemplo, si queremos saber si cada uno de los valores del vector es mayor a 0.5 y mostrar un mensaje en función de eso. Vamos a hacer algo parecido: Supongamos que queremos crear un vector y saber si cada uno de los valores es mayor a 0.5, si lo es, le vamos a sumar 1, si no lo es, le vamos a restar 1.
+
+```{r}
+# Creamos el vector ejemplo_if_for
+set.seed(123)
+ejemplo_if_for <- runif(10, 0, 1) # Creamos un vector de 10 números al azar entre 0 y 1
+# Creamos un nuevo vector vacío para guardar los resultados
+resultados <- c()
+# Recorremos cada elemento del vector ejemplo
+for (valor in ejemplo) {
+  # Si el valor es mayor a 0.5, le sumamos 1
+  if (valor > 0.5) {
+    resultados <- c(resultados, valor + 1)
+  } else {
+    # Si no, le restamos 1
+    resultados <- c(resultados, valor - 1)
+  }
+}
+print(ejemplo_if_for)
+print(resultados)
+```
+
+*Para ver después tranquilos:*  Hay una función similar a `for` que se llama `while()` que nos permite repetir una acción mientras se cumpla una condición. Por ejemplo, podemos querer recorrer un vector hasta encontrar el primer valor mayor a 0.5 y detenernos en ese momento. Utilicemos el vector `ejemplo_for` que creamos antes:
+
+```{r}
+# Creamos el vector ejemplo_while
+set.seed(123)
+ejemplo_while <- runif(10, 0, 1) # Creamos un vector de 10 números al azar entre 0 y 1
+# Creamos un índice para recorrer el vector
+i <- 1
+# Recorremos el vector mientras i sea menor o igual a la longitud del vector
+while (i <= length(ejemplo_while)) {
+  # Si el valor es mayor a 0.5, mostramos un mensaje y salimos del ciclo
+  if (ejemplo_while[i] > 0.5) {
+    print(paste("El primer valor mayor a 0.5 es:", ejemplo_while[i], "en la posición", i))
+    break # Salimos del ciclo
+  }
+  i <- i + 1 # Incrementamos el índice
+}
+```
+
+Hagamos una pequeña prueba. Tenemos un vector de números aleatorios y queremos encontrar el máximo valor y su posición. Vamos a usar un ciclo `for` para recorrer el vector y encontrar el máximo. ¿Cómo lo harían? 
+
+```{r}
+# Este es ek vector objetivo
+set.seed(123)
+ejemplo_max <- runif(100,0,100)
+# A continuación ingrese su código para encontrar el máximo valor y su posición
+
+```
+
+Podemos comparar los resultados con las funciones `max()` y `which.max()`:
+
+```{r}
+# Encontramos el máximo valor y su posición
+maximo_valor <- max(ejemplo_max)
+posicion_maximo <- which.max(ejemplo_max)
+print(paste("El máximo valor es:", round(maximo_valor, 2), "en la posición", posicion_maximo)) 
+```
+
+Aprovechen para chusmear la función `round()` que redondea los números a la cantidad de decimales que le indiquemos (por defecto es 0, o sea sin decimales).
 
 ## Dataset-Dataframe, bases de datos
 
@@ -534,7 +592,7 @@ str(mi_primera_base)
 
 Esta función es sencillamente genial, nos devuelve un panorama general de la base, el numero de observaciones, las variables y una descripción de la clase de cada vector que la compone.
 
-4. Una función que siempre tiene que estar en nuestra caja de herramientas es la función `summary()`:
+4. Una función que siempre tiene que estar en nuestra caja de herramientas es la función `summary()`: 
 
 ```{r}
 summary(mi_primera_base)
@@ -552,12 +610,39 @@ De ahora en mas vamos a trabajar utilizando bases de datos creadas en otros prog
 knitr::include_graphics("img/pollilla.jpg")
 ```
 
-## <i class="fa fa-wrench" aria-hidden="true"></i> Ejercicios integradores
+## Ejercicios integradores
 
-Nacho: Acá también me parece que estaría bueno poner 4 o 5 ejercicios (armar una base, mirarla, explorar alguna función)
+Bueno vamos a tratar de poner todo lo que hicimos en un par de desafios
+
+### Desafio 1
+
+Crea una base de datos ficticia sobre estudiantes. Usá vectores para almacenar la siguiente información (10 estudiantes):
+1. Nombre (texto)
+2. Edad (número al azar entre 25 y 60) 
+3. Género (f o m)
+4. Altura en cm (número con decimales, un numero al azar entre 150 y 210, pero si es hombre, deberia ser 10 cm mas alto que el valor al azar)
+5. Nivel de satisfacción con el curso (bajo, medio, alto)
+
+Combina todo en un dataframe llamado "curso"
+(investiguen con qué funcion podrian resolver el desafio)
+
+```{r}
+# Escriba aquí su respuesta
+```
+
+### Desafio 2
+
+Vamos a dividir este dataframe. Resulta que los primeros 5 alumnos van a formar parte del grupo A y los siguientes 5 parte del grupo B.
+1. Construya un vector con el tipo de grupo (trate de evitar escribir 5 veces A o 5 veces B -hay una funcion para ello, investiguela).
+2. Agregue el vector grupo al dataframe.
+3. Vamos a ver como es la media y el desvio standard de la edad y la altura de cada grupo, hay varias formas de hacerlo (y si fuera facil no seria un desafio), piensen que pueden dividir la base o buscar una funcion que lo haga por ustedes.
+4. Hagan una tabla (hay una funcion llamada table) mostrando el grado de satisfaccion con el curso de cada grupo.
+
+```{r}
+# Escriba aquí su respuesta
+```
+
 Vamos a cerrar esta unidad armando nuestro propio diccionario de funciones. Describa que tareas realizan estas funciones 
-
-
 
 > **DICCIONARIO DE FUNCIONES**
 >
@@ -579,6 +664,18 @@ Vamos a cerrar esta unidad armando nuestro propio diccionario de funciones. Desc
 >
 >sd()
 >
+>max()
+>
+>min()
+>
+>which.max()
+>
+>which.min()
+>
+>round()
+>
+>paste()
+>
 >help()
 >
 >data.frame()
@@ -592,4 +689,4 @@ Vamos a cerrar esta unidad armando nuestro propio diccionario de funciones. Desc
 >summary()
 
 
-Hay algunas funciones que no figuran en el texto, pero usted tiene funciones que le ayudaran a resolver ese problema <i class="fa fa-smile-o" aria-hidden="true"></i>
+Hay algunas funciones que no figuran en el texto, pero usted tiene funciones que le ayudaran a resolver ese problema
