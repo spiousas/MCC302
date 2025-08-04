@@ -39,6 +39,14 @@ tail(df)
 # Esto también se puede hacer desde el menú de RStudio, haciendo clic en el nombre del dataset en el panel de Environment.
 View(df)
 
+# Veamos la variable age.
+df$age
+
+# Y ahora la variable use_often
+df$use_often
+
+# ¿Qué creen que mide esta variable?
+
 # ¿Cuántas observaciones tiene el dataset?
 # ¿Y cuántas variables?
 # ¿Podemos identificar los tipos de variables?
@@ -68,6 +76,8 @@ df %>%
 
 # En este caso no lo asignamos a ninguna variable.
   
+# Tip avanzado: Fijense que pasa cuando tenemos una variable con un espacio en el nombre, como "act morally".
+# Exploren la función clean_names() del paquete janitor para limpiar los nombres de las variables (recuerden que hay que instalar el paquete).  
 # 4- Medias y medianas ####
   
 # Medias generales, medianas generales
