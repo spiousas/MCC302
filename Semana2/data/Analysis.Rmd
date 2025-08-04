@@ -1,0 +1,362 @@
+---
+title: "Attributions of Consciousness to AI"
+author: "Clara Colombatto"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    theme: flatly
+    code_folding: hide
+    toc: true
+---
+
+## Setup
+
+```{r setup, include=FALSE}
+kable <- function(data) {
+  knitr::kable(data, format = "html", digits = 2) %>%
+        kable_styling(bootstrap_options = "striped", full_width = F,
+                      position = "left")
+}
+```
+
+```{r, include=FALSE}
+library(dplyr)
+library(tidyr)
+library(summarytools)
+library(FactoMineR)
+library(kableExtra)
+library(ggplot2)
+library(extrafont)
+```
+
+```{r}
+set.seed(828)
+```
+
+```{r}
+theme_set(theme_classic(base_size = 12, base_family = "Arial") +
+          theme(axis.title = element_text(size = 15),
+                axis.title.x = element_text(margin = margin(6, 0, 0, 0)),
+                axis.title.y = element_text(margin = margin(0, 6, 0, 0)),
+                axis.line = element_line(color='gray20', linewidth=0.6),
+                axis.ticks = element_blank(),
+                strip.background = element_blank()))
+```
+
+## Data Loading
+
+```{r}
+df <- read.csv("Data.csv")
+```
+
+Got N=`r length(unique(df$sub_n))`
+
+## Sample Characteristics
+
+Mean age: `r round(mean(df$age, na.rm = TRUE), 2)`
+
+`r kable(count(df, gender))`
+
+## Consciousness Attributions
+
+```{r fig.width=6, fig.height=4.5}
+summ <- summarise(df, sd = sd(pheno), 
+          pheno = mean(pheno), count=n(), 
+          se = sd/sqrt(count), ci=1.96*se)
+  
+df %>%
+  ggplot(aes(x=pheno)) + 
+   annotate("rect", xmin = -Inf, xmax = Inf, ymin = 105-3, ymax = 105+3,
+           fill = "#136389", alpha = .10) +
+  geom_errorbarh(data=summ, aes(y = 105, xmin = pheno-ci, 
+                      xmax = pheno+ci), color = '#136389',
+                 height = 5)  +
+  geom_point(data=summ, y = 105, size = 3, shape=21, 
+             color = '#136389', fill = '#136389') +
+  geom_histogram(color = 'black', fill = '#136389', bins = 30) +
+  xlab('Consciousness Ratings') +
+  ylab('Number of Participants') +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 110)) +
+  theme(axis.title.y = element_text(margin = margin(0, 2, 0, 0)))
+```
+
+```{r}
+ggsave("Plots/Fig 1A.pdf", width = 4, height = 3)
+```
+
+Low ratings: `r round(sum(df$pheno == 1)*100/length(df$pheno))`%
+
+```{r, warning=FALSE}
+kable(descr(df$pheno, stats = "common"))
+```
+
+```{r}
+mod1 <- lm(df$pheno ~ poly(df$pheno_conf, 1))
+summary(mod1)
+```
+
+```{r}
+mod2 <- lm(df$pheno ~ poly(df$pheno_conf, 2))
+summary(mod2)
+```
+
+```{r}
+anova(mod1, mod2)
+```
+
+```{r}
+confint(mod2)
+```
+
+## Usage
+
+```{r}
+df %>%
+  mutate(use_often_rec = ifelse(use_yn != "Yes", "Never", use_often),
+         use_often_rec = recode(use_often_rec, "About once a month" = "1/mth",
+                                "About once every two weeks" = "2/mth",
+                                "About once a week" = "1/wk",
+                                "About once a day" = "1/day",
+                                "More than once a day" = ">1/day"),
+         use_often_rec = factor(use_often_rec, levels = c(
+            "Never", "1/mth", "2/mth", "1/wk", "1/day", ">1/day"))) -> df
+```
+
+```{r fig.width=6, fig.height=4.5}
+df %>%
+  group_by(use_often_rec) %>%
+  summarise(mean = mean(pheno), sd = sd(pheno), 
+            count = n(), se = sd / sqrt(count), 
+            ci = se * qt(1-(0.05/2), count-1))  %>%
+  ggplot(aes(x=use_often_rec, color=use_often_rec)) + 
+  geom_jitter(data = df, aes(y = pheno), 
+              width = .2, height = 0, alpha = .35, shape = 16) +
+  geom_point(aes(y = mean), size = 3) +
+  geom_errorbar(aes(ymin = mean-ci, ymax = mean+ci), width = .2, linewidth=1) +
+  scale_colour_manual(values = scales::seq_gradient_pal(
+    "#1A89BD", "#0C3F57")(seq(0,1,length.out=6))) +
+  theme(legend.position = "none") +
+  xlab('Usage Frequency') +
+  ylab('Consciousness Ratings')  +
+  theme(axis.title.y = element_text(margin = margin(0, 2, 0, 0)))
+```
+
+```{r}
+ggsave("Plots/Fig 1B.pdf", width = 4, height = 3)
+```
+
+Knew about it: `r round(sum(df$know_yn == "Yes")*100/length(df$know_yn))`%
+
+Used it before: `r round(sum(df$use_yn == "Yes")*100/length(df$use_yn))`%
+
+```{r}
+t.test(filter(df, use_yn == "Yes")$pheno,
+       filter(df, use_yn == "No")$pheno, paired = F)
+```
+
+```{r}
+mod <- lm(pheno ~ as.numeric(use_often_rec), data=df)
+summary(mod)
+```
+
+```{r}
+confint(mod)
+```
+
+## Predictions
+
+```{r fig.width=6, fig.height=4.5}
+summ <- summarise(df, sd = sd(pheno_pred), 
+          pheno_pred = mean(pheno_pred), count=n(), 
+          se = sd/sqrt(count), ci=1.96*se)
+  
+df %>%
+  ggplot(aes(x=pheno_pred)) + 
+   annotate("rect", xmin = -Inf, xmax = Inf, ymin = 105-3, ymax = 105+3,
+           fill = "#9DAEB9", alpha = .10) +
+  geom_errorbarh(data=summ, aes(y = 105, xmin = pheno_pred-ci, 
+                      xmax = pheno_pred+ci), color = '#9DAEB9',
+                 height = 5)  +
+  geom_point(data=summ, y = 105, size = 3, shape=21, 
+             color = '#9DAEB9', fill = '#9DAEB9') +
+  geom_histogram(color = 'black', fill = '#9DAEB9', bins = 30) +
+  xlab('Predictions of Others\' Ratings') +
+  ylab('Number of Participants') +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 110)) +
+  theme(axis.title.y = element_text(margin = margin(0, 2, 0, 0)))
+```
+
+```{r}
+ggsave("Plots/Fig 1C.pdf", width = 4, height = 3)
+```
+
+```{r}
+cor.test(df$pheno, df$pheno_pred)
+```
+
+```{r}
+t.test(df$pheno, df$pheno_pred, paired = T)
+```
+
+```{r fig.width=6, fig.height=4.5}
+df %>%
+  ggplot(aes(x=pheno, y=pheno_pred)) + 
+  geom_point(color = '#136389', alpha = .35, shape = 16) +
+  geom_smooth(method = "lm", color = "#136389") +
+  xlab('Own Consciousness Ratings') +
+  ylab("Predictions of Others' Ratings") +
+  geom_abline(intercept = 0, slope = 1, color = "black", lty = 2)
+```
+
+```{r}
+ggsave("Plots/Fig 1D.pdf", width = 4, height = 3)
+```
+
+```{r}
+kable(descr(df$pheno_pred, stats = "common"))
+```
+
+## Mental States
+
+```{r}
+pca <- PCA(df[, 12:76], scale.unit = TRUE, ncp = 65, graph = FALSE)
+kable(head(pca$eig))
+```
+
+```{r}
+pca <- PCA(df[, 12:76], scale.unit = TRUE, ncp = 2, graph = FALSE)
+```
+
+```{r}
+loads = as.data.frame(pca$var$coord)
+loads$trait <- rownames(loads)
+kable(head(arrange(loads, -Dim.1)))
+```
+
+```{r}
+kable(head(arrange(loads, -Dim.2)))
+```
+
+```{r fig.width=4, fig.height=10}
+df %>%
+  select(act.morally:wishing) %>%
+  summarise_all(mean, na.rm = TRUE) %>%
+  gather(trait, mean) %>%
+  merge(loads) -> loads
+```
+
+```{r}
+cor.test(loads$Dim.1, loads$mean)
+```
+
+```{r}
+cor.test(loads$Dim.2, loads$mean)
+```
+
+```{r fig.width=4, fig.height=10}
+df %>%
+  select(act.morally:wishing) %>%
+  gather(state, rating) %>%
+  group_by(state) %>%
+  summarise(mean=mean(rating, na.rm=TRUE), sd = sd(rating, na.rm=TRUE), 
+            count=n(), se = sd/sqrt(count), ci=1.96*se) %>%
+  ggplot(aes(x = reorder(state, mean), y = mean, 
+             color = mean, fill = mean)) + 
+  geom_errorbar(aes(ymin = mean-ci, ymax = mean+ci), width = .2, linewidth=1) +
+  geom_point(size = 3, shape=21) +
+  scale_fill_gradient(low="gray70", high="#136389") +
+  scale_color_gradient(low="gray70", high="#136389") +
+  coord_flip() +
+  ylab('Attributions to ChatGPT') +
+  theme(legend.position = "none", 
+        axis.title.y = element_blank())
+```
+
+```{r}
+ggsave("Plots/Fig S2A.pdf", width = 3.5, height = 12)
+```
+
+```{r fig.width=6, fig.height=4.5}
+loads %>%
+  gather(dim, coord, -trait, -mean) %>%
+  mutate(dim = ifelse(dim == "Dim.1", "Experience", "Intelligence")) %>%
+  ggplot(aes(x=mean, y=coord, color=dim)) + 
+  geom_point(alpha = .35, shape = 16) +
+  geom_smooth(method = "lm") +
+  scale_colour_manual(values = c("#571782", "#177682")) + 
+  theme(legend.position = "none") +
+  facet_wrap(~dim, scales = "free_y") +
+  xlab('Attribution to ChatGPT') +
+  ylab('Dimension Loading')
+```
+
+```{r}
+ggsave("Plots/Fig 2A.pdf", width = 4, height = 3)
+```
+
+```{r fig.width=4, fig.height=10}
+loads %>%
+  ggplot(aes(x = reorder(trait, Dim.1), y = Dim.1, 
+             color = Dim.1, fill = Dim.1)) + 
+  geom_point(size = 3, shape=21) +
+  scale_fill_gradient(low="gray70", high="#571782") +
+  scale_color_gradient(low="gray70", high="#571782") +
+  coord_flip() +
+    ylab('Dimension Loading') +
+  theme(legend.position = "none", 
+        axis.title.y = element_blank())
+```
+
+```{r}
+ggsave("Plots/Fig S2B1.pdf", width = 3.5, height = 12)
+```
+
+```{r fig.width=4, fig.height=10}
+loads %>%
+  ggplot(aes(x = reorder(trait, Dim.2), y = Dim.2, 
+             color = Dim.2, fill = Dim.2)) + 
+  geom_point(size = 3, shape=21) +
+  scale_fill_gradient(low="gray70", high="#177682") +
+  scale_color_gradient(low="gray70", high="#177682") +
+  coord_flip() +
+  ylab('Dimension Loading') +
+  theme(legend.position = "none", 
+      axis.title.y = element_blank())
+```
+
+```{r}
+ggsave("Plots/Fig S2B2.pdf", width = 3.5, height = 12)
+```
+
+```{r}
+loads = as.data.frame(pca$ind$coord)
+loads$sub_n <- rownames(loads)
+df <- merge(df, loads)
+```
+
+```{r}
+cor.test(df$pheno, df$Dim.1)
+```
+
+```{r}
+cor.test(df$pheno, df$Dim.2)
+```
+
+```{r fig.width=6, fig.height=4.5}
+df %>%
+  select(Dim.1, Dim.2, pheno) %>%
+  gather(dim, coord, -pheno) %>%
+  mutate(dim = ifelse(dim == "Dim.1", "Experience", "Intelligence")) %>%
+  ggplot(aes(x=pheno, y=coord, color=dim)) + 
+  geom_point(alpha = .35, shape = 16) +
+  geom_smooth(method = "lm") +
+  scale_colour_manual(values = c("#571782", "#177682")) + 
+  theme(legend.position = "none") +
+  facet_wrap(~dim, scales = "free_y") +
+  xlab('Consciousness Ratings') +
+  ylab('Dimension Loading')
+```
+
+```{r}
+ggsave("Plots/Fig 2B.pdf", width = 4, height = 3)
+```
