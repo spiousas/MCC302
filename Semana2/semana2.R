@@ -44,7 +44,36 @@ View(df)
 # ¿Podemos identificar los tipos de variables?
 # ¿Hay datos faltantes? 
 
+# Para los análisis que vienen nos vamos a quedar sólo con algunas variables:
+# pheno: un score de 1 a 100 que indica cuánta conciencia fenomenal creen que tiene el modelo de lenguaje.
+# pheno_pred: un score de 1 a 100 que indica cuánta conciencia fenomenal creen que el resto de la gente va a responder.
+# age: edad.
+# gender: género.
+# use_often: una variable discreta que indica con qué frecuencia la persona usa modelos de lenguaje.
+# `act morally`: un score de 1 a 100 que indica cuán moralmente consideran que actúa el modelo de lenguaje.
+
+# Para esto vamos a usar nuestra primera función del tidyverse: select()
+df_filtrado <- select(df, c("pheno", "pheno_pred", "age", "gender", "act morally", "use_often"))
+
+# Es una buena práctica guardar el dataset filtrado en una nueva variable para no perder el original.
+# Ahora podemos ver el dataset filtrado
+summary(df_filtrado)
+str(df_filtrado)
+
+# Acá vamos a presentar al operador pipe %>% que nos permite encadenar funciones de una manera más legible.
+# Por ejemplo, podemos filtrar el dataset y luego ver un resumen de las variables numéricas de la siguiente manera:
+df %>%
+  select(c("pheno", "pheno_pred", "age", "gender", "act morally", "use_often"))
+  summary()
+
+# En este caso no lo asignamos a ninguna variable.
+  
 # 4- Medias y medianas ####
+  
+# Medias generales, medianas generales
+# Medias por género
+  
+# medias por uso. Qué pueden decir al respecto?
 
 # 4- Desviaciones estándar e IQR ####
 
