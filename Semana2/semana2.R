@@ -71,7 +71,7 @@ str(df_filtrado)
 # Acá vamos a presentar al operador pipe %>% que nos permite encadenar funciones de una manera más legible.
 # Por ejemplo, podemos filtrar el dataset y luego ver un resumen de las variables numéricas de la siguiente manera:
 df %>%
-  select(c("pheno", "pheno_pred", "age", "gender", "act morally", "use_often"))
+  select(c("pheno", "pheno_pred", "age", "gender", "act morally", "use_often")) %>%
   summary()
 
 # En este caso no lo asignamos a ninguna variable.
@@ -79,7 +79,15 @@ df %>%
 # Tip avanzado: Fijense que pasa cuando tenemos una variable con un espacio en el nombre, como "act morally".
 # Exploren la función clean_names() del paquete janitor para limpiar los nombres de las variables (recuerden que hay que instalar el paquete).  
 # 4- Medias y medianas ####
+for (var in colnames(df_filtrado)){
+  var_values = select(df_filtrado,var)
+  mean_var = mean_age = mean(var_values,na.rm=TRUE)
+  sd_var = sd(var_values,na.rm=TRUE)
+  median_var = median(var_values,na.rm=TRUE)
   
+  print(paste(var, "Promedio: ;", mean_var, " Desvío estándar: ;", sd_var, " Mediana: ", median_var))
+}
+
 # Medias generales, medianas generales
 # Medias por género
   
