@@ -1,0 +1,36 @@
+---
+title: "Untitled"
+author: "Ignacio Spiousas, Ismael Calandri, Gonzalo Perez y Maggie Cobb"
+date: "2025-08-07"
+output: html_document
+---
+
+<body style="background-color:#EEEEEE;">
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n{x_i} = \frac{x_1+x_2+\cdots +x_n}{n}
+$$
+
+$$
+x = ( 90, 129, 174, 192, 194, 211, 213, 230, 291, 362) \\
+x_1 = 90 \\
+x_7 = ...
+$$
+
+$$
+x = (90, 129, 174, 192, 194, 211, 213, 230, 291, 3627) \\
+x_1 = 90 \\
+x_7 = 213
+$$
+
+$$
+\begin{align}
+\bar{x} =& \frac{1}{10}\sum_{i=1}^n{x_i} \\
+=& \frac{90 + 129 + 174 + 192 + 194 + 211 + 213 + 230 + 291 + 362}{10} \\
+=& 208.6
+\end{align}
+$$
