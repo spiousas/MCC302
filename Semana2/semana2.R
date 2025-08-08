@@ -78,22 +78,67 @@ df %>%
   
 # Tip avanzado: Fijense que pasa cuando tenemos una variable con un espacio en el nombre, como "act morally".
 # Exploren la función clean_names() del paquete janitor para limpiar los nombres de las variables (recuerden que hay que instalar el paquete).  
+
 # 4- Medias y medianas ####
-for (var in colnames(df_filtrado)){
-  var_values = select(df_filtrado,var)
-  mean_var = mean_age = mean(var_values,na.rm=TRUE)
-  sd_var = sd(var_values,na.rm=TRUE)
-  median_var = median(var_values,na.rm=TRUE)
-  
-  print(paste(var, "Promedio: ;", mean_var, " Desvío estándar: ;", sd_var, " Mediana: ", median_var))
-}
 
-# Medias generales, medianas generales
-# Medias por género
-  
-# medias por uso. Qué pueden decir al respecto?
+# Así calculamos la media y la mediana de la variable pheno
+mean(df_filtrado$pheno)
+median(df_filtrado$pheno)
 
-# 4- Desviaciones estándar e IQR ####
+# Calculen lo mismo para todas las variables numéricas del dataset filtrado.
+
+## Medias por género ####
+# Para calcular las medias de la variable pheno por género tenemos que separar los datos de acuedo a esa columna
+pheno_male <- df_filtrado$pheno[df_filtrado$gender == "Male"]
+mean(pheno_male)
+pheno_female <- df_filtrado$pheno[df_filtrado$gender == "Female"]
+mean(pheno_female)
+
+# Pero también podemos ser cancheros y cancheras y usar el tidyverse
+df_filtrado %>%
+  group_by(gender) %>%
+  summarise(mean_pheno = mean(pheno))
+# ¿Ven algo distinto?
+
+## Medias por uso. ####
+# Ahora calculen las medias de la variable pheno por uso frecuente de modelos de lenguaje
+
+# ¿Qué pueden decir al respecto?
+
+# 4- Desviaciones estándar ####
+
+# Así calculamos la varianza y la desviación estándar de la variable pheno
+var(df_filtrado$pheno)
+sd(df_filtrado$pheno)
+
+# Calculen lo mismo para todas las variables numéricas del dataset filtrado.
+
+# Hagan lo mismo por género y por uso frecuente de modelos de lenguaje usando tidyverse.
 
 # 5- Correlación (que, como sabemos, NO IMPLICA CAUSALIDAD) ####
- 
+# Así calculamos la correlación entre pheno y la edad
+cor(df_filtrado$pheno, df_filtrado$age)
+# ¿Por qué me tira error?
+# Porque tengo datos faltantes en la variable age.
+
+# Construyamos un dataset sin datos faltantes en age
+df_filtrado_sin_na <- df_filtrado %>%
+  filter(!is.na(age))
+
+# Y ahora:
+cor(df_filtrado_sin_na$pheno, df_filtrado_sin_na$age)
+
+# Una correlación que puede estar interesante es entre pheno y pheno_pred. ¿Por qué creen?
+# Calculenla e interpreten el resultado.
+
+# Ejercicio avanzado: ¿Pueden calcular e interpretar la correlación entre pheno y pheno_pred dependiendo de la frecuencia de uso?
+
+# Tip avanzado: Usando el paquete corrplot (lo pueden instalar con install.packages("corrplot")) pueden hacer un gráfico de 
+# correlación entre todas las variables numéricas del dataset filtrado.
+library(corrplot)
+data <- df_filtrado %>% 
+  select_if(is.numeric) %>% # Me quedo sólo con las variables numéricas
+  drop_na() # Me saco del encima los na
+
+M <- cor(data)
+corrplot(M, method="color")

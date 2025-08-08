@@ -34,3 +34,45 @@ $$
 =& 208.6
 \end{align}
 $$
+
+$$
+\mathrm{mediana}(x) = x_{(n + 1)/ 2}
+$$
+
+$$
+\mathrm{mediana}(x) = \frac{x_{(n/2)} + x_{((n/2)+1)}}{2}
+$$
+
+$$
+\tilde{S}_x^2 = \frac{1}{n} \sum_{i=1}^n \left(x_i - \overline{x}\right)^2
+$$
+
+$$
+\tilde{S}_x = \sqrt{\frac{1}{n} \sum_{i=1}^n \left(x_i - \overline{x}\right)^2}
+$$
+
+$$
+S_x^2 = \frac{1}{n - 1} \sum_{i=1}^n \left(x_i - \overline{x}\right)^2
+$$
+
+$$
+S_x = \sqrt{\frac{1}{n-1} \sum_{i=1}^n \left(x_i - \overline{x}\right)^2}
+$$
+
+$$
+var_x = \frac{1}{n - 1} \sum_{i=1}^n \left(x_i - \overline{x}\right)^2 = \frac{1}{n - 1} \sum_{i=1}^n \left(x_i - \overline{x}\right) \left(x_i - \overline{x}\right)
+$$
+
+$$
+cov_{xy} = \frac{1}{n - 1} \sum_{i=1}^n \left(x_i - \overline{x}\right) \left(y_i - \overline{y}\right)
+$$
+
+$$
+r_{xy} = \frac{\frac{1}{n - 1}\sum\limits_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}
+            {\sqrt{\frac{1}{n - 1}\sum\limits_{i=1}^n (x_i-\bar{x})^2 \frac{1}{n - 1}\sum\limits_{i=1}^n (y_i-\bar{y})^2}}
+$$
+
+$$
+r_{xy} = \frac{cov(x,y)}
+            {\sqrt{var(x)var(y)}}
+$$
