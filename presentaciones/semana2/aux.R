@@ -122,31 +122,36 @@ sort(data$x)
 
 # Datos de altura
 library(modelr)
+
+mean_height <- mean(heights %>% pull(height))*2.54
+median_height <- median(heights %>% pull(height))*2.54
+
 heights %>%
   ggplot(aes(x = height*2.54, y = 1)) +
   geom_jitter(height = .1, width = 0,  pch = 21, fill = "darkorange", alpha  = .5, size = 3, color = "black") +
-  geom_vline(xintercept = mean(heights$height*2.54), color = "black", linetype  = "dashed", size = 1) +
-  geom_vline(xintercept = median(heights$height*2.54), color = "red", linetype  = "dashed", size = 1) +
+  geom_vline(xintercept = mean_height, color = "black", linetype  = "dashed", size = 1) +
+  geom_vline(xintercept = median_height, color = "red", linetype  = "dashed", size = 1) +
   coord_cartesian(clip = "off") +
   scale_y_continuous(breaks=c()) +
   labs(x = "Altura (cm)", y = "") +
   theme_minimal()
 ggsave("presentaciones/semana2/fig9.png", width = 12, height = 3)
 
+mean_income <- mean(heights %>% filter(income < 340000) %>% pull(income))
+median_income <- median(heights %>% filter(income < 340000) %>% pull(income))
+
 heights %>%
   filter(income < 340000) %>%
   ggplot(aes(x = income, y = 1)) +
   geom_jitter(height = .1, width = 0, pch = 21, fill = "darkorange", alpha  = .5, size = 3, color = "black") +
-  geom_vline(xintercept = mean(heights$income), color = "black", linetype  = "dashed", size = 1) +
-  geom_vline(xintercept = median(heights$income), color = "red", linetype  = "dashed", size = 1) +
+  geom_vline(xintercept = mean_income, color = "black", linetype  = "dashed", size = 1) +
+  geom_vline(xintercept = median_income, color = "red", linetype  = "dashed", size = 1) +
   coord_cartesian(clip = "off") +
   scale_y_continuous(breaks=c()) +
   labs(x = "Ingreso (USD por año)", y = "") +
   theme_minimal()
 ggsave("presentaciones/semana2/fig10.png", width = 12, height = 3)
 
-mean(heights$income)
-median(heights$income)
 
 # Varianza
 set.seed(121)
@@ -199,4 +204,9 @@ data %>%
   theme_bw()
 
 ggsave("presentaciones/semana2/fig14.png", width = 6, height = 6)
+
 mean(data$edad)
+mean(data$tr)
+
+cov(data$edad, data$tr)
+cor(data$edad, data$tr)
