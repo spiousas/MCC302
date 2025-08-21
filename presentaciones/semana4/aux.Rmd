@@ -1,0 +1,77 @@
+---
+title: "Untitled"
+author: "Ignacio Spiousas, Ismael Calandri, Gonzalo Perez y Maggie Cobb"
+date: "2025-08-07"
+output: html_document
+---
+
+<body style="background-color:#EEEEEE;">
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$$
+\mathbb{P}(A) \geq 0
+$$
+
+$$
+\mathbb{P}(\Omega) = 1
+$$
+$$
+\mathbb{P}\left( \bigcup_{i = 1}^\infty A_i\right) = \sum_{i = 1}^\infty \mathbb{P}(A_i) 
+$$
+
+$$
+X \sim Ber(p) \Rightarrow P(X = 1) = p, P(X = 0) = 1 - p
+$$
+
+$$
+P(X = x) = p^x (1 - p)^{1 - x}
+$$
+
+
+$$
+P(X = 1) = p^1 (1 - p)^{1 - 1} = p
+$$
+$$
+P(X = 0) = p^0 (1 - p)^{1 - 0} = (1 - p)
+$$
+
+$$
+f_X(x) = P(X = x)
+$$
+
+$$
+f_X(x) = \begin{cases}
+1/4 & \text{si } x = 0,\\
+1/2 & \text{si } x = 1,\\
+1/4 & \text{si } x = 2,\\
+0  & \text{en otro caso}
+\end{cases}
+$$
+
+$$
+F_X(x) = P(X \leq  x)
+$$
+
+$$
+F_X(x) = \begin{cases}
+0 & \text{si } x < 0,\\
+1/4 & \text{si } 0 \leq x < 1,\\
+3/4 & \text{si } 1 \leq x < 2,\\
+1 & \text{si } x \geq 2\\
+\end{cases}
+$$
+
+$$
+\mathbb{E}(X) = \sum_{x} x f_X(x) = 0 \cdot 1/4 + 1 \cdot 1/2 + 2 \cdot 1/4 = 1
+$$
+
+$$
+\mathbb{E}(X) = \int_{x} x f_X(x)
+$$
+
+$$
+altura \sim \mathcal{N}(\mu = 178, \sigma^2 = (30)^2) 
+$$
