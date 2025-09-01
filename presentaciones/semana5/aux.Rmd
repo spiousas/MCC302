@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+author: "Ignacio Spiousas, Ismael Calandri, Gonzalo Perez y Maggie Cobb"
+date: "2025-08-07"
+output: html_document
+---
+
+<body style="background-color:#EEEEEE;">
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$$
+X_1 \sim \text{Ber}(p=0.5) \\
+$$
+$$
+X_2 \sim \text{Ber}(p=0.3) \\
+$$
+
+$$
+X_3 \sim \text{Poi}(\lambda=4) \\
+$$
+$$
+X_4 \sim \mathcal{N}(\mu=10, \sigma^2=4) \\
+$$
+
+$$
+\bar{X_n} \overset{p}{\to} \mu
+$$
+
+
+$$
+\mathbb{P}(|\bar{X_n}-\mu|<\epsilon) \leq \frac{\mathbb{V}(\bar{X_n})}{\epsilon^2}=\frac{\sigma^2}{n\epsilon^2} 
+$$

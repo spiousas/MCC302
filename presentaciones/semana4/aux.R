@@ -17,9 +17,9 @@ funcShaded_top <- function(x, lower_bound) {
 
 ggplot(data.frame(x = c(m-3*std, m+3*std)), aes(x = x)) + 
   stat_function(fun = dnorm, args = list(mean = m, sd = std)) + 
-  stat_function(fun = funcShaded_top, args = list(lower_bound = 120), 
-                geom = "area", fill = "#84CA72", alpha = .2) +
-  stat_function(fun = funcShaded_bottom, args = list(lower_bound = 160), 
+  # stat_function(fun = funcShaded_top, args = list(lower_bound = 120), 
+  #               geom = "area", fill = "#84CA72", alpha = .2) +
+  stat_function(fun = funcShaded_bottom, args = list(lower_bound = 216), 
                 geom = "area", fill = "steelblue", alpha = .2) +
   scale_x_continuous(name = "Score", breaks = seq(m-3*std, m+3*std, std)) +
   theme_minimal(base_size = 16) +
