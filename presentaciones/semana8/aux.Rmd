@@ -1,0 +1,93 @@
+---
+title: "Untitled"
+author: "Ignacio Spiousas, Ismael Calandri, Gonzalo Perez y Maggie Cobb"
+date: "2025-08-07"
+output: html_document
+---
+
+<!-- <body style="background-color:#EEEEEE;"> -->
+
+
+$$
+T_i = \mu + \epsilon_i
+$$
+
+$$
+\epsilon_i \sim N(0, \sigma^2)
+$$
+
+$$
+E(\epsilon_i) = 0
+$$
+
+$$
+Var(\epsilon_i) = \sigma^2
+$$
+
+$$
+E(T_i) = \mu
+$$
+
+$$
+Var(T_i) = \sigma^2
+$$
+$$
+\mu = 500 \,\,\,\,\,\,\,\, \sigma = 20
+$$
+
+$$
+\epsilon_i \sim N(0, 20^2)
+$$
+
+$$
+T_i \sim N(500, 20^2)
+$$
+
+$$
+\bar{T_n} \sim N\left(\mu, \frac{\sigma^2}{n}\right) = N\left(500, \frac{20^2}{n}\right)
+$$
+
+$$
+y_i = \beta_0 + \beta_1 x_i + \epsilon_i
+$$
+
+$$
+\epsilon_i \sim N(0, \sigma^2)
+$$
+
+$$
+E(\epsilon_i) = 0
+$$
+
+$$
+E(y_i)
+$$
+
+$$
+E(y_i|x_i) = \beta_0 + \beta_1 
+$$
+
+$$
+length_i = \beta_0 + \beta_1 depth_i + \epsilon_i
+$$
+$$
+\widehat{length_i} = \widehat\beta_0 + \widehat\beta_1 depth_i
+$$
+
+$$
+\begin{align*}
+t_{obs} =& \frac{\hat{\mu} - \mu_{H_0}}{\sqrt{S^2/n}} \\
+=& \frac{\bar{x} - 0}{SE(\mu)} 
+\end{align*}
+$$
+
+$$
+\begin{align*}
+t_{obs} =& \frac{\hat{\beta_1} - \beta_{H_0}}{SE(\hat\beta_1)} \\
+=& \frac{1.1039 - 0}{0.4971} = 2.221 
+\end{align*}
+$$
+
+$$
+t_{obs} = \frac{\widehat\beta_1 - 0}{SE(\widehat\beta_1)}
+$$

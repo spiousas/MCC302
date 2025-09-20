@@ -1,0 +1,86 @@
+---
+title: "Untitled"
+author: "Ignacio Spiousas, Ismael Calandri, Gonzalo Perez y Maggie Cobb"
+date: "2025-08-07"
+output: html_document
+---
+
+<!-- <body style="background-color:#EEEEEE;"> -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$$
+X_1 \sim \text{Ber}(p=0.5) \\
+$$
+$$
+X_2 \sim \text{Ber}(p=0.3) \\
+$$
+
+$$
+X_3 \sim \text{Poi}(\lambda=4) \\
+$$
+$$
+X_4 \sim \mathcal{N}(\mu=10, \sigma^2=4) \\
+$$
+
+$$
+\bar{X_n} \overset{p}{\to} \mu
+$$
+
+
+$$
+\mathbb{P}(|\bar{X_n}-\mu|<\epsilon) \leq \frac{\mathbb{V}(\bar{X_n})}{\epsilon^2}=\frac{\sigma^2}{n\epsilon^2} 
+$$
+
+$$
+\bar{X_n} = \hat{p}
+$$
+
+$$
+\bar{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i
+$$
+
+$$
+\bar{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i
+$$
+
+$$
+\bar{X}_n \mathrel{\overset{d}{\longrightarrow}} \mathcal{N}\left(\mu,\frac{\sigma^2}{n}\right)
+$$
+
+$$
+\bar{X}_{25} \dot\sim  \mathcal{N}\left(\mu,\frac{\sigma^2}{n}\right) = \mathcal{N}\left(10,\frac{4}{25}\right)
+$$
+
+$$
+\bar{X}_{100} \dot\sim \mathcal{N}\left(10,\frac{4}{100}\right)
+$$
+
+$$
+X_{pre} \sim \mathcal{N}\left(10,4\right)
+$$
+
+$$
+X_{post} \sim \mathcal{N}\left(9.5,4\right)
+$$
+
+$$
+\bar{X}_{pre-n=25} \dot\sim \mathcal{N}\left(10,\frac{4}{25}\right) = \mathcal{N}\left(10,0.16\right)
+$$
+$$
+\bar{X}_{post-n=25} \dot\sim \mathcal{N}\left(9.5,0.16\right)
+$$
+
+$$
+\bar{X}_{pre-n=1000} \dot\sim \mathcal{N}\left(10,\frac{4}{1000}\right) = \mathcal{N}\left(10,0.004\right)
+$$
+
+$$
+\bar{X}_{post-n=1000} \dot\sim \mathcal{N}\left(9.5,0.004\right)
+$$
+
+$$
+\mu, \sigma^2
+$$

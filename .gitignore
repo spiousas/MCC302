@@ -41,9 +41,16 @@ vignettes/*.pdf
 
 # pkgdown site
 docs/
+data/
 
 # translation temp files
 po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# OS generated files
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store

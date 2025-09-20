@@ -1,0 +1,142 @@
+---
+title: "Untitled"
+author: "Ignacio Spiousas, Ismael Calandri, Gonzalo Perez y Maggie Cobb"
+date: "2025-08-07"
+output: html_document
+---
+
+<!-- <body style="background-color:#EEEEEE;"> -->
+
+
+$$
+T_{baseline} \sim \mathcal{N}\left(1.5,0.5^2\right)
+$$
+
+$$
+H_1: T_{post} > T_{baseline}
+$$
+
+$$
+H_1: \mu_{post} > \mu_{baseline}
+$$
+
+$$
+H_1: \mu_{post} > 1.5
+$$
+
+$$
+H_0: \mu_{post} \leq 1.5
+$$
+
+$$
+\bar{T}_{30} = 1.59
+$$
+
+$$
+\bar{T}_{200} = 1.59
+$$
+
+$$
+T_{post} \sim \mathcal{N}\left(1.5,0.5^2\right)
+$$
+
+$$
+\bar{T}_{30} \sim \mathcal{N}\left(1.5,\frac{0.5^2}{30}\right)
+$$
+
+$$
+P(\bar{T}_{30} = 1.59|\mu_{post} = 1.5)
+$$
+
+$$
+P(\bar{T}_{30} = 1.59|H_0)
+$$
+
+$$
+P(\bar{T}_{30} = 1.59|H_0) = 0 \text{ (exactamente)}
+$$
+
+$$
+P(\bar{T}_{30} \geq 1.59|H_0) = 1 - P(\bar{T}_{30} < 1.59|H_0)
+$$
+
+$$
+\begin{align*}
+H_1&:& \mu_{post} \neq 1.5 \\
+H_0&:& \mu_{post} = 1.5
+\end{align*}
+$$
+
+$$
+P(|\bar{X}_{n}| > {x}_{n} | H_0) = P(\bar{X}_{n} \leq - {x}_{n} | H_0)  + P(\bar{X}_{n} \geq {x}_{n} | H_0) 
+$$
+
+$$
+P(|\bar{X}_{n}| > {x}_{n} | H_0)  = 2 \times P(\bar{X}_{n} \leq - {x}_{n} | H_0)  
+$$
+
+$$
+\begin{align*}
+P(|\bar{X}_{n}| > {x}_{n} | H_0) &= P(\bar{X}_{n} \leq - {x}_{n} | H_0)  + \\
+&+ 1 - P(\bar{X}_{n} < {x}_{n} | H_0) \\
+\end{align*}
+$$
+
+$$
+\begin{align*}
+P(|\bar{X}_{n}| > {x}_{n} | H_0) &= P(\bar{X}_{n} \leq - {x}_{n} | H_0)  + \\
+&+ 1 - P(\bar{X}_{n} < {x}_{n} | H_0) \\
+\end{align*}
+$$
+
+$$
+\frac{\bar{X}_{n} - \mu}{\sqrt{\sigma^2/n}} \sim \mathcal{N}\left(0,1\right)
+$$
+
+$$
+(n-1) \frac{S^2}{\sigma^2} \sim \chi^2_{n-1}
+$$
+
+$$
+\begin{align*}
+U &\sim& \mathcal{N}\left(0,1\right) \\
+V &\sim& \chi^2_{n} \\
+\frac{U}{\sqrt{V/n}} &\sim& t_{n} \\
+\end{align*}
+$$
+
+$$
+\frac{\bar{T}_{n} - \mu}{\sqrt{S^2/n}} \sim t_{n-1}
+$$
+
+$$
+\frac{\bar{T}_{30} - \mu}{\sqrt{S^2/30}} \sim t_{n-1} = t_{29}
+$$
+
+$$
+T_{post} \sim \mathcal{N}\left(1.75,0.5^2\right)
+$$
+
+
+
+$$
+t_{obs} = \frac{\bar{t}_{30} - \mu_0}{\sqrt{S^2/30}} 
+$$
+
+$$
+t_{obs} = \frac{\bar{t}_{30} - \mu_0}{\sqrt{S^2/30}} 
+$$
+
+$$
+t_{obs} = \frac{\bar{t}_{30} - \mu_0}{\sqrt{S^2/n}} = \frac{\bar{t}_{30} - 1.5}{\sqrt{S^2/30}}  = \frac{1.73 - 1.5}{\sqrt{0.09^2/30}} = 2.53 
+$$
+
+
+
+$$
+P\left( \left| \frac{\bar{T}_{30} - \mu_0}{\sqrt{S^2/30}} \right| > t_{obs} \right)
+$$
+
+$$
+P\left( \left| \frac{\bar{T}_{30} -1.5}{\sqrt{S^2/30}} \right| > t_{obs} \right) = 2 \times P \left( \frac{\bar{T}_{30} - 1.5}{\sqrt{S^2/30}} < - t_{obs} \right)
+$$
