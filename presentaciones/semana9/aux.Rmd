@@ -1,0 +1,161 @@
+---
+title: "Untitled"
+author: "Ignacio Spiousas, Ismael Calandri, Gonzalo Perez y Maggie Cobb"
+date: "2025-08-07"
+output: html_document
+---
+
+<!-- <body style="background-color:#EEEEEE;"> -->
+
+
+$$
+\text{Memoria musical}_i= \beta_0 + \beta_{expertise} \text{Años de formación} + \varepsilon_i
+$$
+
+$$
+\begin{align*}
+H_0: & \beta_{expertise} = 0 \\
+H_a: & \beta_{expertise} \neq 0
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\widehat{\text{Memoria musical}}_{expertise=10} = & \beta_0 + \beta_{expertise} \times 10\\
+= & 20.86 + 0.23 \times 10 \\
+= & 23.16
+\end{align*}
+$$
+
+$$
+\mathbf{1}_A \colon X \rightarrow \{ 0, 1 \}
+$$
+
+$$
+\mathbf{1}_A\!( x ) = \begin{cases}
+1 & \text{if } x \in A \\
+0 & \text{if } x \notin A \,.
+\end{cases}
+$$
+$$
+\mathbf{1}_{male}\!( x ) = \begin{cases}
+1 & \text{if } x = male \\
+0 & \text{if } x \neq male \,.
+\end{cases}
+$$
+
+$$
+\text{Memoria visual}_i= \beta_0 + \beta_{sexo} \mathbf{1}_{male} + \varepsilon_i
+$$
+
+$$
+\mathbf{1}_{male}\!( x ) = \begin{cases}
+1 & \text{if } x = male \\
+0 & \text{if } x \neq male \,.
+\end{cases}
+$$
+
+$$
+\widehat{\text{Memoria visual}}_{sex=female}= 8.631 + 0.295 \times 0 = 8.631
+$$
+
+$$
+\widehat{\text{Memoria visual}}_{sex=male}= 8.631 + 0.295 \times 1 = 8.926
+$$
+
+$$
+\text{Memoria visual}_i= \beta_0 + \beta_{Germany} \mathbf{1}_{Germany} + \beta_{Italy} \mathbf{1}_{Italy} + \varepsilon_i
+$$
+
+$$
+\mathbf{1}_{Germany}\!( x ) = \begin{cases}
+1 & \text{if } x = Germany \\
+0 & \text{if } x \neq Germany 
+\end{cases}
+$$
+
+$$
+\mathbf{1}_{Italy}\!( x ) = \begin{cases}
+1 & \text{if } x = Italy \\
+0 & \text{if } x \neq Italy
+\end{cases}
+$$
+
+$$
+\widehat{\text{Memoria visual}}_{Finland} = \beta_0 + \beta_{Germany} \mathbf{1}_{Germany} + \beta_{Italy} \mathbf{1}_{Italy}
+$$
+
+$$
+\widehat{\text{Memoria visual}}_{Finland} = \beta_0 + \beta_{Germany} \times 0 + \beta_{Italy} \times 0 = \beta_0 = 9.62
+$$
+
+$$
+\widehat{\text{Memoria visual}}_{Germany} = \beta_0 + \beta_{Germany} \times 1 + \beta_{Italy} \times 0 = \beta_0 = 8.86
+$$
+
+$$
+\widehat{\text{Memoria visual}}_{Italy} = \beta_0 + \beta_{Germany} \times 0 + \beta_{Italy} \times 1 = \beta_0 = 8.37
+$$
+$$
+\begin{align*}
+H_0 &: \beta_{Germany} = \beta_{Italy} = 0 \\
+H_a &: \text{al menos un } \beta_j \neq 0
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\text{Memoria musical}_i &= \beta_0 + \beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \mathbf{1}_{nonmusician} + \\
+& + \beta_{int} \text{Años de formación} \times \mathbf{1}_{nonmusician} + \varepsilon_i
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\widehat{\text{Memoria musical}}_{nonmusician} &= \beta_0 + \beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \times 1 + \\
+& + \beta_{int} \text{Años de formación} \times 1  = \\
+ &= (\beta_0+\beta_{nonmusician}) + (\beta_{expertise} + \beta_{int})  \text{Años de formación} = \\
+ &= (23.55 - 3.21) + (0.25 - 0.17) \text{Años de formación} = \\
+ &= 20.34 + 0.08 \text{Años de formación}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\widehat{\text{Memoria musical}}_{nonmusician} &= \beta_0 + \beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \times 1 + \\
+& + \beta_{int} \text{Años de formación} \times 1  = \\
+ &= (\beta_0+\beta_{nonmusician}) + (\beta_{expertise} + \beta_{int})  \text{Años de formación}
+\end{align*}
+$$
+
+$$
+\widehat{\text{Memoria musical}}_{nonmusician} =  (\beta_0+\beta_{nonmusician}) + (\beta_{expertise} + \beta_{int})  \text{Años de formación}
+$$
+$$
+\widehat{\text{Memoria musical}}_{nonmusician} = 20.34 + 0.08 \text{Años de formación}
+$$
+
+$$
+\begin{align*}
+\widehat{\text{Memoria musical}}_{musician} &= \beta_0 + \beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \times 0 + \\
+& + \beta_{int} \text{Años de formación} \times 0  = \\
+ &= \beta_0 + \beta_{expertise} \text{Años de formación} = \\
+ &= 23.55  + 0.25  \text{Años de formación}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\widehat{\text{Memoria musical}}_{musician} &= \beta_0 + \beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \times 0 + \\
+& + \beta_{int} \text{Años de formación} \times 0  = \\
+ &= \beta_0 + \beta_{expertise} \text{Años de formación}
+\end{align*}
+$$
+
+$$
+\widehat{\text{Memoria musical}}_{musician} = \beta_0 + \beta_{expertise} \text{Años de formación}
+$$
+
+$$
+\widehat{\text{Memoria musical}}_{musician} = 23.55  + 0.25  \text{Años de formación}
+$$
