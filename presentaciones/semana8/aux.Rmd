@@ -52,6 +52,10 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 $$
 
 $$
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
+$$
+
+$$
 \epsilon_i \sim N(0, \sigma^2)
 $$
 
@@ -60,15 +64,15 @@ E(\epsilon_i) = 0
 $$
 
 $$
-E(y_i)
+E(Y_i)
 $$
 
 $$
-E(y_i|x_i) = \beta_0 + \beta_1 
+E(Y_i|X_i) = \beta_0 + \beta_1 
 $$
 
 $$
-length_i = \beta_0 + \beta_1 depth_i + \epsilon_i
+Length_i = \beta_0 + \beta_1 Depth_i + \epsilon_i
 $$
 $$
 \widehat{length_i} = \widehat\beta_0 + \widehat\beta_1 depth_i

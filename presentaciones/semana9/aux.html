@@ -358,10 +358,10 @@ Maggie Cobb</h4>
 </div>
 
 
-<!-- <body style="background-color:#EEEEEE;"> -->
+<body style="background-color:#EEEEEE;">
 <p><span class="math display">\[
 \text{Memoria musical}_i= \beta_0 + \beta_{expertise} \text{Años de
-formación} + \varepsilon_i
+formación}_i + \varepsilon_i
 \]</span></p>
 <p><span class="math display">\[
 \begin{align*}
@@ -392,13 +392,13 @@ H_a: &amp; \beta_{expertise} \neq 0
 \end{cases}
 \]</span></p>
 <p><span class="math display">\[
-\text{Memoria visual}_i= \beta_0 + \beta_{sexo} \mathbf{1}_{male} +
+\text{Memoria visual}_i= \beta_0 + \beta_{sexo} \mathbf{1}_{male_i} +
 \varepsilon_i
 \]</span></p>
 <p><span class="math display">\[
-\mathbf{1}_{male}\!( x ) = \begin{cases}
-1 &amp; \text{if } x = male \\
-0 &amp; \text{if } x \neq male \,.
+\mathbf{1}_{male}\!( x_i ) = \begin{cases}
+1 &amp; \text{if } x_i = male \\
+0 &amp; \text{if } x_i \neq male
 \end{cases}
 \]</span></p>
 <p><span class="math display">\[
@@ -410,19 +410,20 @@ H_a: &amp; \beta_{expertise} \neq 0
 8.926
 \]</span></p>
 <p><span class="math display">\[
-\text{Memoria visual}_i= \beta_0 + \beta_{Germany} \mathbf{1}_{Germany}
-+ \beta_{Italy} \mathbf{1}_{Italy} + \varepsilon_i
+\text{Memoria visual}_i= \beta_0 + \beta_{Germany}
+\mathbf{1}_{Germany_i} + \beta_{Italy} \mathbf{1}_{Italy_i} +
+\varepsilon_i
 \]</span></p>
 <p><span class="math display">\[
-\mathbf{1}_{Germany}\!( x ) = \begin{cases}
-1 &amp; \text{if } x = Germany \\
-0 &amp; \text{if } x \neq Germany
+\mathbf{1}_{Germany}\!( x_i ) = \begin{cases}
+1 &amp; \text{if } x_i = Germany \\
+0 &amp; \text{if } x_i \neq Germany
 \end{cases}
 \]</span></p>
 <p><span class="math display">\[
-\mathbf{1}_{Italy}\!( x ) = \begin{cases}
-1 &amp; \text{if } x = Italy \\
-0 &amp; \text{if } x \neq Italy
+\mathbf{1}_{Italy}\!( x_i ) = \begin{cases}
+1 &amp; \text{if } x_i = Italy \\
+0 &amp; \text{if } x_i \neq Italy
 \end{cases}
 \]</span></p>
 <p><span class="math display">\[
@@ -449,67 +450,67 @@ H_a &amp;: \text{al menos un } \beta_j \neq 0
 <p><span class="math display">\[
 \begin{align*}
 \text{Memoria musical}_i &amp;= \beta_0 + \beta_{expertise} \text{Años
-de formación} + \beta_{nonmusician} \mathbf{1}_{nonmusician} + \\
-&amp; + \beta_{int} \text{Años de formación} \times
-\mathbf{1}_{nonmusician} + \varepsilon_i
+de formación}_i + \beta_{nonmusician} \mathbf{1}_{nonmusician_i} + \\
+&amp; + \beta_{int} \text{Años de formación}_i \times
+\mathbf{1}_{nonmusician_i} + \varepsilon_i
 \end{align*}
 \]</span></p>
 <p><span class="math display">\[
 \begin{align*}
 \widehat{\text{Memoria musical}}_{nonmusician} &amp;= \beta_0 +
-\beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \times
-1 + \\
-&amp; + \beta_{int} \text{Años de formación} \times 1  = \\
+\beta_{expertise} \text{Años de formación}_i + \beta_{nonmusician_i}
+\times 1 + \\
+&amp; + \beta_{int} \text{Años de formación}_i \times 1  = \\
 &amp;= (\beta_0+\beta_{nonmusician}) + (\beta_{expertise} +
-\beta_{int})  \text{Años de formación} = \\
-&amp;= (23.55 - 3.21) + (0.25 - 0.17) \text{Años de formación} = \\
-&amp;= 20.34 + 0.08 \text{Años de formación}
+\beta_{int})  \text{Años de formación}_i = \\
+&amp;= (23.55 - 3.21) + (0.25 - 0.17) \text{Años de formación}_i = \\
+&amp;= 20.34 + 0.08 \text{Años de formación}_i
 \end{align*}
 \]</span></p>
 <p><span class="math display">\[
 \begin{align*}
 \widehat{\text{Memoria musical}}_{nonmusician} &amp;= \beta_0 +
-\beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \times
-1 + \\
-&amp; + \beta_{int} \text{Años de formación} \times 1  = \\
+\beta_{expertise} \text{Años de formación}_i + \beta_{nonmusician_i}
+\times 1 + \\
+&amp; + \beta_{int} \text{Años de formación}_i \times 1  = \\
 &amp;= (\beta_0+\beta_{nonmusician}) + (\beta_{expertise} +
-\beta_{int})  \text{Años de formación}
+\beta_{int})  \text{Años de formación}_i
 \end{align*}
 \]</span></p>
 <p><span class="math display">\[
 \widehat{\text{Memoria musical}}_{nonmusician}
 =  (\beta_0+\beta_{nonmusician}) + (\beta_{expertise} +
-\beta_{int})  \text{Años de formación}
+\beta_{int})  \text{Años de formación}_i
 \]</span> <span class="math display">\[
 \widehat{\text{Memoria musical}}_{nonmusician} = 20.34 + 0.08 \text{Años
-de formación}
+de formación}_i
 \]</span></p>
 <p><span class="math display">\[
 \begin{align*}
 \widehat{\text{Memoria musical}}_{musician} &amp;= \beta_0 +
-\beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \times
-0 + \\
-&amp; + \beta_{int} \text{Años de formación} \times 0  = \\
-&amp;= \beta_0 + \beta_{expertise} \text{Años de formación} = \\
-&amp;= 23.55  + 0.25  \text{Años de formación}
+\beta_{expertise} \text{Años de formación}_i + \beta_{nonmusician_i}
+\times 0 + \\
+&amp; + \beta_{int} \text{Años de formación}_i \times 0  = \\
+&amp;= \beta_0 + \beta_{expertise} \text{Años de formación}_i = \\
+&amp;= 23.55  + 0.25  \text{Años de formación}_i
 \end{align*}
 \]</span></p>
 <p><span class="math display">\[
 \begin{align*}
 \widehat{\text{Memoria musical}}_{musician} &amp;= \beta_0 +
-\beta_{expertise} \text{Años de formación} + \beta_{nonmusician} \times
-0 + \\
-&amp; + \beta_{int} \text{Años de formación} \times 0  = \\
-&amp;= \beta_0 + \beta_{expertise} \text{Años de formación}
+\beta_{expertise} \text{Años de formación}_i + \beta_{nonmusician_i}
+\times 0 + \\
+&amp; + \beta_{int} \text{Años de formación}_i \times 0  = \\
+&amp;= \beta_0 + \beta_{expertise} \text{Años de formación}_i
 \end{align*}
 \]</span></p>
 <p><span class="math display">\[
 \widehat{\text{Memoria musical}}_{musician} = \beta_0 +
-\beta_{expertise} \text{Años de formación}
+\beta_{expertise} \text{Años de formación}_i
 \]</span></p>
 <p><span class="math display">\[
 \widehat{\text{Memoria musical}}_{musician} = 23.55  + 0.25  \text{Años
-de formación}
+de formación}_i
 \]</span></p>
 
 
